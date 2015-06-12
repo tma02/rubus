@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
+	<classpathentry sourcepath="/Users/tma/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.6.2/34d15ddf29a3a4b5022e5035d0befe98e90d83ec/gdx-1.6.2-sources.jar" kind="lib" path="/Users/tma/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.6.2/b70b1eb9da71076aa47ac8932b42358b00db84a0/gdx-1.6.2.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/tma/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-box2d/1.6.2/8f89728682848a3a5191d9f5b54ff9d2828a0ca3/gdx-box2d-1.6.2-sources.jar" kind="lib" path="/Users/tma/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-box2d/1.6.2/b4406b97b35d7caf7111400ceebc8b92c8998168/gdx-box2d-1.6.2.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/tma/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-bullet/1.6.2/d3d2a7ab1b9a13f952026efeda3b119575e11c18/gdx-bullet-1.6.2-sources.jar" kind="lib" path="/Users/tma/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-bullet/1.6.2/2862bce6275d098ca89eda45ab8a45133e860a88/gdx-bullet-1.6.2.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/tma/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-ai/1.5.0/1ecf751f2ed8e80f693a018219f3aa5e74b10da4/gdx-ai-1.5.0-sources.jar" kind="lib" path="/Users/tma/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-ai/1.5.0/5f694a1d54a6e15884ac50b83b7927df771d69b0/gdx-ai-1.5.0.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/tma/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-freetype/1.6.2/f42fa4fc587adf5db89cdde6a8f1aeb5800be936/gdx-freetype-1.6.2-sources.jar" kind="lib" path="/Users/tma/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-freetype/1.6.2/62705f896186f9294e37daa0ade876e8692310cf/gdx-freetype-1.6.2.jar" exported="true"/>
+</classpath>
