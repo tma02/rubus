@@ -1,6 +1,9 @@
 package co.hytlabs.rubus.entity;
 
+import co.hytlabs.rubus.Rubus;
 import co.hytlabs.rubus.map.TileLocation;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
@@ -30,7 +33,15 @@ public class Entity {
         return this.location;
     }
 
-    public void render(SpriteBatch batch) {
+    public void setLocation(TileLocation tileLocation) {
+        this.location = tileLocation;
+    }
+
+    public void render(SpriteBatch batch, float x, float y) {
+        batch.draw(this.textureRegion, 0 + (x * Rubus.TEXTURE_SCALE), 0 + (y * Rubus.TEXTURE_SCALE), Rubus.TEXTURE_SCALE * this.textureRegion.getRegionWidth(), Rubus.TEXTURE_SCALE * this.textureRegion.getRegionHeight());
+    }
+
+    public void tick(int delta) {
 
     }
 

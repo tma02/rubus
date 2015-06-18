@@ -35,6 +35,14 @@ public class TileLocation {
         return this.tileY;
     }
 
+    public void addX(short x) {
+        this.tileX += x;
+    }
+
+    public void addY(short y) {
+        this.tileY += y;
+    }
+
     public boolean isAtEdge(Dungeon dungeon) {
         Floor floor = dungeon.getFloors()[this.roomLocation.getFloor()];
         Room room = floor.getRoom(this.roomLocation.getX(), this.roomLocation.getY());

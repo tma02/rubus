@@ -21,7 +21,7 @@ public class Floor {
     }
 
     public void generate() {
-        this.rooms[128][128] = new Room(this, (byte) 0, (byte) 0, (short) 12, (short) 7);
+        this.rooms[128][128] = new Room(this, (byte) 0, (byte) 0, (short) 12, (short) 6);
     }
 
     public byte getLevel() {

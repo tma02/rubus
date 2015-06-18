@@ -1,6 +1,7 @@
 package co.hytlabs.rubus.logic;
 
 import co.hytlabs.rubus.map.Dungeon;
+import co.hytlabs.rubus.map.Room;
 import co.hytlabs.rubus.map.TileLocation;
 
 import java.util.HashMap;
@@ -52,6 +53,10 @@ public class Character {
 
     public void setLocation(TileLocation tileLocation) {
         this.location = tileLocation;
+    }
+
+    public Room getRoom() {
+        return this.dungeon.getFloors()[this.location.getRoomLocation().getFloor()].getRoom(this.location.getRoomLocation().getX(), this.location.getRoomLocation().getY());
     }
 
     public enum Profession {

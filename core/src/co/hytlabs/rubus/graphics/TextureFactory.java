@@ -39,7 +39,7 @@ public class TextureFactory {
                 Tile.Type.FLOOR, Tile.Type.FLOOR, Tile.Type.FLOOR,
                 Tile.Type.FLOOR, Tile.Type.FLOOR,
                 Tile.Type.FLOOR, Tile.Type.FLOOR, Tile.Type.FLOOR
-        }), new TextureRegion[] {textures[0][0], textures[1][2], textures[2][2], textures[3][2], textures[4][2], textures[5][2], textures[6][2], textures[7][2], textures[8][2]});
+        }), new TextureRegion[] {textures[0][0], textures[1][2], textures[2][2], textures[3][2], textures[4][2]/*, textures[5][2], textures[6][2], textures[7][2], textures[8][2]*/});
         textureMap.put(Arrays.asList(new Tile.Type[] {
                 Tile.Type.EMPTY, Tile.Type.EMPTY, Tile.Type.EMPTY,
                 Tile.Type.EMPTY, Tile.Type.FLOOR,
@@ -70,6 +70,16 @@ public class TextureFactory {
                 Tile.Type.FLOOR, Tile.Type.FLOOR,
                 Tile.Type.FLOOR, Tile.Type.FLOOR, Tile.Type.FLOOR
         }), new TextureRegion[] {textures[8][0], textures[9][0], textures[10][0]});
+        textureMap.put(Arrays.asList(new Tile.Type[] {
+                Tile.Type.FLOOR, Tile.Type.FLOOR, Tile.Type.FLOOR,
+                Tile.Type.FLOOR, Tile.Type.FLOOR,
+                Tile.Type.EMPTY, Tile.Type.EMPTY, Tile.Type.EMPTY
+        }), new TextureRegion[] {textures[11][0], textures[12][0], textures[13][0]});
+        textureMap.put(Arrays.asList(new Tile.Type[] {
+                Tile.Type.FLOOR, Tile.Type.FLOOR, Tile.Type.EMPTY,
+                Tile.Type.FLOOR, Tile.Type.EMPTY,
+                Tile.Type.FLOOR, Tile.Type.FLOOR, Tile.Type.EMPTY
+        }), new TextureRegion[] {textures[14][0], textures[15][0], textures[16][0]});
         return textureMap;
     }
 

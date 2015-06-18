@@ -26,6 +26,7 @@ public class RoomView extends View {
     @Override
     public void render(SpriteBatch batch) {
         this.room.render(batch, this);
+        this.room.renderEntities(batch, this);
     }
 
 }

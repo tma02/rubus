@@ -4,7 +4,6 @@ import co.hytlabs.rubus.Rubus;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 /**

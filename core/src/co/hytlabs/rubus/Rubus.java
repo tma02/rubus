@@ -1,5 +1,6 @@
 package co.hytlabs.rubus;
 
+import co.hytlabs.rubus.entity.CharacterEntity;
 import co.hytlabs.rubus.graphics.RoomView;
 import co.hytlabs.rubus.graphics.TextureFactory;
 import co.hytlabs.rubus.logic.Affinity;
@@ -49,8 +50,9 @@ public class Rubus extends ApplicationAdapter {
 		this.initLogic();
 
 		this.character.setLocation(new TileLocation((byte) 0, (byte) 0, (byte) 0, (short) 0, (short) 0));
+		this.character.getRoom().spawnEntity(new CharacterEntity(this.character, this.dungeonTiles[0][26]));
 		RoomLocation roomLocation = this.character.getLocation().getRoomLocation();
-		this.roomView = new RoomView(0, 0, 0, 0, this.character.getDungeon().getFloors()[roomLocation.getFloor()].getRoom(roomLocation.getX(), roomLocation.getY()));
+		this.roomView = new RoomView(48, 0, 0, 0, this.character.getDungeon().getFloors()[roomLocation.getFloor()].getRoom(roomLocation.getX(), roomLocation.getY()));
 	}
 
 	public void loadAssets() {
