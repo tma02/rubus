@@ -1,5 +1,7 @@
 package co.hytlabs.rubus.map;
 
+import co.hytlabs.rubus.Rubus;
+
 /**
  * Rubus
  * Created by tma02 on 6/8/15.
@@ -101,6 +103,10 @@ public class TileLocation {
             tileTypes[i] = tiles[i].getType();
         }
         return tileTypes;
+    }
+
+    public float[] getRawCoords() {
+        return new float[] {this.getX() * Rubus.TEXTURE_SCALE, this.getY() * Rubus.TEXTURE_SCALE};
     }
 
 }

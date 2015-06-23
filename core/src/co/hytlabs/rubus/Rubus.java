@@ -25,9 +25,11 @@ public class Rubus extends ApplicationAdapter {
 
 	public static Rubus instance;
 	public static final float TEXTURE_SCALE = 3.0f;
+	public static final int ANIMATION_SPEED = 120;
 	private int windowWidth, windowHeight;
 	private SpriteBatch batch;
 	private Texture dungeonTexture;
+	private Texture warriorTexture;
 	private TextureRegion[][] dungeonTiles;
 	private TextureRegion[][] floorTiles;
 	private TextureRegion[][] ceilingTiles;
@@ -50,13 +52,14 @@ public class Rubus extends ApplicationAdapter {
 		this.initLogic();
 
 		this.character.setLocation(new TileLocation((byte) 0, (byte) 0, (byte) 0, (short) 0, (short) 0));
-		this.character.getRoom().spawnEntity(new CharacterEntity(this.character, this.dungeonTiles[0][26]));
+		this.character.getRoom().spawnEntity(new CharacterEntity(this.character, TextureFactory.buildAnimations(this.warriorTexture, 32, 32, 10)));
 		RoomLocation roomLocation = this.character.getLocation().getRoomLocation();
 		this.roomView = new RoomView(48, 0, 0, 0, this.character.getDungeon().getFloors()[roomLocation.getFloor()].getRoom(roomLocation.getX(), roomLocation.getY()));
 	}
 
 	public void loadAssets() {
 		this.dungeonTexture = new Texture(Gdx.files.internal("core/assets/dungeon.png"));
+		this.warriorTexture = new Texture(Gdx.files.internal("core/assets/warrior.png"));
 		this.dungeonTiles = TextureFactory.buildRegions(this.dungeonTexture, 16, 16);
 		this.ceilingTiles = this.dungeonTiles.clone();
 		for (int i = 0; i < this.ceilingTiles.length; i++) {

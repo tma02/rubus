@@ -1,9 +1,11 @@
 package co.hytlabs.rubus.entity;
 
+import co.hytlabs.rubus.graphics.Animation;
 import co.hytlabs.rubus.logic.Character;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
+import java.util.HashMap;
 
 /**
  * Rubus
@@ -14,10 +16,39 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class CharacterEntity extends Entity {
 
     private Character character;
+    private DeltaCounter walkNorthCounter;
+    private DeltaCounter walkEastCounter;
+    private DeltaCounter walkSouthCounter;
+    private DeltaCounter walkWestCounter;
 
-    public CharacterEntity(Character character, TextureRegion textureRegion) {
-        super(0, character.getLocation(), textureRegion);
+    public CharacterEntity(Character character, HashMap<Animation.Type, Animation> animations) {
+        super(0, character.getLocation(), animations);
         this.character = character;
+        final Character fChar = character;
+        this.walkNorthCounter = new DeltaCounter(new Runnable() {
+            @Override
+            public void run() {
+                fChar.getLocation().addY((short) 1);
+            }
+        }, 20);
+        this.walkEastCounter = new DeltaCounter(new Runnable() {
+            @Override
+            public void run() {
+                fChar.getLocation().addX((short) 1);
+            }
+        }, 20);
+        this.walkSouthCounter = new DeltaCounter(new Runnable() {
+            @Override
+            public void run() {
+                fChar.getLocation().addY((short) -1);
+            }
+        }, 20);
+        this.walkWestCounter = new DeltaCounter(new Runnable() {
+            @Override
+            public void run() {
+                fChar.getLocation().addX((short) -1);
+            }
+        }, 20);
     }
 
     /*@Override
@@ -27,17 +58,47 @@ public class CharacterEntity extends Entity {
 
     @Override
     public void tick(int delta) {
+        super.tick(delta);
+        boolean walk = false;
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-            this.character.getLocation().addY((short) 1);
+            this.walkNorthCounter.tick(delta);
+            if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
+                this.walkNorthCounter.tick(delta);
+            }
+            walk = true;
         }
-        else if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-            this.character.getLocation().addX((short) -1);
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+            this.walkWestCounter.tick(delta);
+            if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
+                this.walkWestCounter.tick(delta);
+            }
+            this.direction = Entity.Direction.LEFT;
+            walk = true;
         }
-        else if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-            this.character.getLocation().addY((short) -1);
+        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+            this.walkSouthCounter.tick(delta);
+            if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
+                this.walkSouthCounter.tick(delta);
+            }
+            walk = true;
         }
-        else if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            this.character.getLocation().addX((short) 1);
+        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+            this.walkEastCounter.tick(delta);
+            if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
+                this.walkEastCounter.tick(delta);
+            }
+            this.direction = Entity.Direction.RIGHT;
+            walk = true;
+        }
+        if (walk) {
+            this.setState(Animation.Type.WALK);
+        }
+        else {
+            this.walkNorthCounter.reset();
+            this.walkEastCounter.reset();
+            this.walkSouthCounter.reset();
+            this.walkWestCounter.reset();
+            this.setState(Animation.Type.IDLE);
         }
         this.setLocation(this.character.getLocation());
     }

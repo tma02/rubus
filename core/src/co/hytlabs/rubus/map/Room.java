@@ -19,6 +19,7 @@ public class Room {
     private RoomLocation location;
     private ArrayList<Entity> entities;
     private Tile[][] tiles;
+    private long lastTick;
 
     public Room(Floor floor, byte roomX, byte roomY, short width, short height) {
         this.roomX = roomX;
@@ -33,6 +34,7 @@ public class Room {
                 this.tiles[x][y] = new Tile(new TileLocation(this.location, (short) x, (short) y), Tile.Type.FLOOR);
             }
         }
+        this.lastTick = -1;
     }
 
     public short getWidth() {
@@ -74,12 +76,14 @@ public class Room {
     }
 
     public void renderEntities(SpriteBatch batch, RoomView roomView) {
-        for (Entity entity : this.entities) {
-            float x = entity.getLocation().getX();
-            float y = entity.getLocation().getY();
-            entity.tick(0);
-            entity.render(batch, roomView.getX() + (x * 16), roomView.getY() + (y * 16));
+        if (this.lastTick == -1) {
+            this.lastTick = System.currentTimeMillis();
         }
+        for (Entity entity : this.entities) {
+            entity.tick((int) (System.currentTimeMillis() - this.lastTick));
+            entity.render(batch);
+        }
+        this.lastTick = System.currentTimeMillis();
     }
 
 }

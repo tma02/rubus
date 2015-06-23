@@ -1,10 +1,10 @@
 package co.hytlabs.rubus.graphics;
 
+import co.hytlabs.rubus.Rubus;
 import co.hytlabs.rubus.map.Tile;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -81,6 +81,22 @@ public class TextureFactory {
                 Tile.Type.FLOOR, Tile.Type.FLOOR, Tile.Type.EMPTY
         }), new TextureRegion[] {textures[14][0], textures[15][0], textures[16][0]});
         return textureMap;
+    }
+
+    public static Animation buildAnimation(Texture texture, int width, int height, Animation.Type type, int frames) {
+        Animation animation = new Animation(new TextureRegion[] {}, Rubus.ANIMATION_SPEED, type);
+        for (int i = 0; i < frames; i++) {
+            animation.setFrame(i, new TextureRegion(texture, i * width, type.ordinal() * height, width, height));
+        }
+        return animation;
+    }
+
+    public static HashMap<Animation.Type, Animation> buildAnimations(Texture texture, int width, int height, int frames) {
+        HashMap<Animation.Type, Animation> animations = new HashMap<Animation.Type, Animation>();
+        for (Animation.Type type : Animation.Type.values()) {
+            animations.put(type, TextureFactory.buildAnimation(texture, width, height, type, frames));
+        }
+        return animations;
     }
 
 }
