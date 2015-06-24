@@ -3,8 +3,6 @@ package co.hytlabs.rubus.entity;
 import co.hytlabs.rubus.Rubus;
 import co.hytlabs.rubus.graphics.Animation;
 import co.hytlabs.rubus.map.TileLocation;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
@@ -20,18 +18,22 @@ public class Entity {
 
     private int id;
     private TileLocation location;
+    private TileLocation target;
     protected Entity.Direction direction;
     private TextureRegion textureRegion;
     private HashMap<Animation.Type, Animation> animations;
     protected Animation.Type state;
+    private boolean movementToggle;
 
     public Entity(int id, TileLocation location, HashMap<Animation.Type, Animation> animations) {
         this.id = id;
         this.location = location;
+        this.target = location;
         this.direction = Entity.Direction.RIGHT;
         this.animations = animations;
         this.state = Animation.Type.IDLE;
         this.textureRegion = null;
+        this.movementToggle = false;
     }
 
     public Entity(int id, TileLocation location, TextureRegion textureRegion) {
@@ -41,6 +43,7 @@ public class Entity {
         this.textureRegion = textureRegion;
         this.animations = null;
         this.state = null;
+        this.movementToggle = false;
     }
 
     public int getId() {
@@ -81,6 +84,22 @@ public class Entity {
             animation.tick(delta);
         }*/
         this.animations.get(this.state).tick(delta);
+        if (!this.atTarget()) {
+            this.movementToggle = !this.movementToggle;
+            if (!this.movementToggle) {
+                return;
+            }
+            this.getLocation().addY((short) Math.signum(this.target.getY() - this.location.getY()));
+            this.getLocation().addX((short) Math.signum(this.target.getX() - this.location.getX()));
+        }
+    }
+
+    public void setTarget(TileLocation location) {
+        this.target = location;
+    }
+
+    public boolean atTarget() {
+        return this.getLocation().equals(this.target);
     }
 
     public enum Direction {

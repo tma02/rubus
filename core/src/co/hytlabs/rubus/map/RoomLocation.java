@@ -33,4 +33,8 @@ public class RoomLocation {
         return this.roomY;
     }
 
+    public boolean equals(RoomLocation location) {
+        return this.getX() == location.getX() && this.getY() == location.getY() && this.getFloor() == location.getFloor();
+    }
+
 }

@@ -51,7 +51,7 @@ public class Rubus extends ApplicationAdapter {
 		this.loadAssets();
 		this.initLogic();
 
-		this.character.setLocation(new TileLocation((byte) 0, (byte) 0, (byte) 0, (short) 0, (short) 0));
+		this.character.setLocation(new TileLocation((byte) 0, (byte) 0, (byte) 0, (short) 8, (short) 0));
 		this.character.getRoom().spawnEntity(new CharacterEntity(this.character, TextureFactory.buildAnimations(this.warriorTexture, 32, 32, 10)));
 		RoomLocation roomLocation = this.character.getLocation().getRoomLocation();
 		this.roomView = new RoomView(48, 0, 0, 0, this.character.getDungeon().getFloors()[roomLocation.getFloor()].getRoom(roomLocation.getX(), roomLocation.getY()));

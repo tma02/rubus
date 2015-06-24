@@ -25,6 +25,12 @@ public class TileLocation {
         this.tileY = tileY;
     }
 
+    public TileLocation(TileLocation tileLocation, short tileX, short tileY) {
+        this.roomLocation = tileLocation.roomLocation;
+        this.tileX = tileX;
+        this.tileY = tileY;
+    }
+
     public RoomLocation getRoomLocation() {
         return this.roomLocation;
     }
@@ -107,6 +113,10 @@ public class TileLocation {
 
     public float[] getRawCoords() {
         return new float[] {this.getX() * Rubus.TEXTURE_SCALE, this.getY() * Rubus.TEXTURE_SCALE};
+    }
+
+    public boolean equals(TileLocation location) {
+        return this.getX() == location.getX() && this.getY() == location.getY() && this.getRoomLocation().equals(this.roomLocation);
     }
 
 }

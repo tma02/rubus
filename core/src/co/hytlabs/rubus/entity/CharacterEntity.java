@@ -2,6 +2,7 @@ package co.hytlabs.rubus.entity;
 
 import co.hytlabs.rubus.graphics.Animation;
 import co.hytlabs.rubus.logic.Character;
+import co.hytlabs.rubus.map.TileLocation;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 
@@ -60,33 +61,24 @@ public class CharacterEntity extends Entity {
     public void tick(int delta) {
         super.tick(delta);
         boolean walk = false;
+        if (!this.atTarget()) {
+            return;
+        }
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-            this.walkNorthCounter.tick(delta);
-            if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
-                this.walkNorthCounter.tick(delta);
-            }
+            this.setTarget(new TileLocation(this.getLocation(), this.getLocation().getX(), (short) (this.getLocation().getY() + 16)));
             walk = true;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-            this.walkWestCounter.tick(delta);
-            if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
-                this.walkWestCounter.tick(delta);
-            }
+            this.setTarget(new TileLocation(this.getLocation(), (short) (this.getLocation().getX() - 16), this.getLocation().getY()));
             this.direction = Entity.Direction.LEFT;
             walk = true;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-            this.walkSouthCounter.tick(delta);
-            if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
-                this.walkSouthCounter.tick(delta);
-            }
+            this.setTarget(new TileLocation(this.getLocation(), this.getLocation().getX(), (short) (this.getLocation().getY() - 16)));
             walk = true;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            this.walkEastCounter.tick(delta);
-            if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
-                this.walkEastCounter.tick(delta);
-            }
+            this.setTarget(new TileLocation(this.getLocation(), (short) (this.getLocation().getX() + 16), this.getLocation().getY()));
             this.direction = Entity.Direction.RIGHT;
             walk = true;
         }
